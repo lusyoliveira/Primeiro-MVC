@@ -1,0 +1,52 @@
+﻿@model ModelBD.Unidade
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Unidade</h2>
+@using (Html.BeginForm("Deletar", "Cliente"))
+{
+    <input type="submit" value="Deletar Selecionados" class="btn btn-default" />
+
+    @*<a href=" />Cliente/Cadastrar">Novo Cliente</a>*@
+    @Html.ActionLink("Novo Cliente", "Cadastrar", "Cliente")
+
+    @Html.Partial("Mensagem")
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th><input type="checkbox" title="Seleciona Todos" onclick="selecionaTodos(this, 'chkUnidade')" /></th>
+                <th>Nome</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+    if (ViewBag.ClienteList == null)
+    {
+        <tr>
+            <td colspan="5">Não existe cliente cadastrado</td>
+        </tr>
+    }
+    else
+    {
+        foreach (ModelBD.Unidade unidade in ViewBag.UnidadeList)
+        {
+            string onclick = "onclick=editarUnidade(" + unidade.Id + ")";
+
+            <tr>
+                <td><input type="checkbox" name="chkUnidade" value="@unidade.Id" /></td>
+                <td @onclick>@unidade.Nome</td>
+                <td @onclick>@unidade.Cidade</td>
+                <td @onclick>@unidade.Estado</td>
+            </tr>
+        }
+    }
+            }
+        </tbody>
+    </table>
+}
+@Scripts.Render("~/Scripts/Utils.js")

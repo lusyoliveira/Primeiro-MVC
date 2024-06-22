@@ -1,0 +1,49 @@
+﻿@model ModelBD.Unidade
+
+@{
+    ViewBag.Title = "Unidade";
+}
+
+   @using (Html.BeginForm("NovoCliente", "Cliente"))
+{
+    <div class="form-horizontal">
+        <h3>Cadastrar</h3>
+        <hr />
+
+        @Html.Partial("Mensagem")
+
+        <div class="form-group">
+            @Html.LabelFor(c => c.Nome, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(c => c.Nome)
+                @Html.ValidationMessageFor(c => c.Nome)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(c => c.Cidade, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(c => c.Cidade, "Cidade")
+            </div>
+        </div>
+            
+        <div class="form-group">
+            @Html.LabelFor(c => c.Estado, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(c => c.Estado, "Cidade")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Enviar" class="btn btn-default" />
+            </div>
+
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}
+
+

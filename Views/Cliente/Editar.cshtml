@@ -1,0 +1,55 @@
+﻿@model ModelBD.Cliente
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+@using (Html.BeginForm("Editar", "Cliente"))
+{
+    <div class="form-horizontal">
+        <h3>Editar</h3>
+        <hr />
+
+        @Html.Partial("Mensagem")
+
+        <div class="form-group">
+            @Html.LabelFor(c => c.Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(c => c.Id, new { @readonly = "readonly" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(c => c.Nome, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(c => c.Nome)
+                @Html.ValidationMessageFor(c => c.Nome)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(c => c.Email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(c => c.Email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(c => c.IdCarro, "Carro", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(c => c.IdCarro, (IEnumerable<SelectListItem>)ViewBag.CarroList, "Selecione")
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Enviar" class="btn btn-default" />
+            </div>
+
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}

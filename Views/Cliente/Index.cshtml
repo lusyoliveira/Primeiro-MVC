@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Cliente</h2>
+@using (Html.BeginForm("Deletar", "Cliente"))
+{
+    <input type="submit" value="Deletar Selecionados" class="btn btn-default" />
+
+@*<a href=" />Cliente/Cadastrar">Novo Cliente</a>*@
+@Html.ActionLink("Novo Cliente", "Cadastrar", "Cliente")
+    
+      @Html.Partial("Mensagem")
+    
+<table class="table">
+    <thead>
+        <tr>
+            <th><input type="checkbox" title="Seleciona Todos" onclick="selecionaTodos(this, 'chkCliente')" /></th>
+            <th>Nome </th>
+            <th>Email</th>
+            <th>Nome do Carro</th>
+            <th>Marca do Carro</th>
+            <th>Placa do Carro</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (ViewBag.ClienteList == null)
+            {
+                <tr>
+                    <td colspan="5">Não existe cliente cadastrado</td>
+                </tr>
+        }
+            else 
+            {
+                foreach (ModelBD.Cliente cliente in ViewBag.ClienteList)
+	{
+                    string onclick =  "onclick=editarCliente(" +cliente.Id+ ")";
+                        
+		 <tr>
+             <td><input type="checkbox" name="chkCliente" value="@cliente.Id" /></td>
+           <td @onclick>@cliente.Nome</td>
+           <td @onclick>@cliente.Email</td>
+           <td @onclick>@cliente.Carro.Nome</td>
+           <td @onclick>@cliente.Carro.Marca.Nome</td>
+           <td @onclick>@cliente.Carro.Placa</td>
+         </tr>
+	}
+            }
+            }
+    </tbody>
+</table>
+}
+@Scripts.Render("~/Scripts/Utils.js")

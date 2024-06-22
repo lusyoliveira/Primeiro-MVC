@@ -1,0 +1,13 @@
+﻿
+@if (ViewBag.MensagemErro != null)
+{
+    <div class="mensagemErro">
+        @ViewBag.MensagemErro
+    </div>
+}
+else if (ViewBag.MensagemSucesso != null)
+{
+    <div class="mensagemSucesso">
+        @ViewBag.MensagemSucesso
+    </div>
+}
